@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Głosowanie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Wybierz kandydata</h1>
+            <p>Witaj, {{ session['username'] }}!</p>
+        </header>
+        
+        {% if error %}
+        <div class="error-message">{{ error }}</div>
+        {% endif %}
+        
+        <form method="POST">
+            {% for candidate in candidates %}
+            <div class="candidate-option">
+                <input type="radio" name="candidate" id="candidate{{ candidate.id }}" 
+                      value="{{ candidate.id }}" required>
+                <label for="candidate{{ candidate.id }}">{{ candidate.name }}</label>
+            </div>
+            {% endfor %}
+            
+            <input type="submit" value="Zagłosuj" class="button">
+        </form>
+    </div>
+</body>
+</html>

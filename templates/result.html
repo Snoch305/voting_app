@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyniki głosowania</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Wyniki głosowania</h1>
+            {% if 'username' in session %}
+                <p>Witaj, {{ session['username'] }}!</p>
+            {% endif %}
+        </header>
+
+        <div class="results">
+            <h2>Aktualne wyniki:</h2>
+            {% for candidate in sorted_candidates %}
+                <div class="candidate-result">
+                    <span class="candidate-name">{{ candidate.name }}</span>
+                    <span class="candidate-votes">{{ candidate.votes }} głosów</span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="buttons">
+            {% if 'username' in session and ('voted_users' not in session or session['username'] not in session['voted_users']) %}
+                <a href="{{ url_for('vote') }}" class="button">Przejdź do głosowania</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}" class="button">Wyloguj się</a>
+        </div>
+    </div>
+</body>
+</html>

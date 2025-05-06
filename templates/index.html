@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Głosowania</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Witaj w systemie głosowania!</h1>
+            <p>Proszę zarejestrować się, aby zagłosować.</p>
+        </header>
+        <div class="buttons">
+            <a href="{{ url_for('register_user') }}" class="button">Zarejestruj się</a>
+        </div>
+    </div>
+</body>
+</html>
